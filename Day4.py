@@ -23,13 +23,11 @@ def part1(lines):
     total = 0
 
     for card in cards:
-        score = 0
+        count = 0
         for number in card[1]:
             if number in card[0]:
-                if score == 0:
-                    score = 1
-                    continue
-                score *= 2
+                count += 1
+        score = pow(2, count-1)
 
         total += score
 
