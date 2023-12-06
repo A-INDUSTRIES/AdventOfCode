@@ -18,12 +18,25 @@ def part1(file_content):
 
 def part2(file_content):
     seeds, maps = parse_file(file_content)
-    results = []
-    # ........
-    #   ....
-    # ,,....,,
-    # //////////
-    # ,,....,,//
+    results = result = []
+    for m in maps:
+        for r in m:
+            length = r[2]
+            start = r[1]
+            end = start + length
+            offset = start - r[0]
+            for i in [i*2 for i in range(0, int(len(seeds) * 0.5 - 1))]:
+                s_start = seeds[i]
+                s_end = seeds[i] + seeds[i + 1]
+                if s_end < start or s_start > end:
+                    continue
+                result.append(min(s_start, start))
+                result.append(max(s_start, start) - 1)
+                result.append(max(s_start, start) - offset)
+                result.append(min(s_end, end) - offset)
+                result.append(min(s_end, end) + 1)
+                result.append(max(s_end, end))
+                print(result)
     return results
 
 
