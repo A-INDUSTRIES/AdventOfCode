@@ -36,8 +36,12 @@ def part2(file_content):
                     result.append(s_length)
                 elif s_start < start and s_end > end:
                     print("s bigger")
+                    result.append(s_start)
+                    result.append(start - s_start)
                     result.append(start - offset)
                     result.append(length)
+                    result.append(end)
+                    result.append(s_end - end)
                 elif s_start > start and s_end < end:
                     print("s smaller")
                     result.append(s_start - offset)
@@ -56,13 +60,13 @@ def part2(file_content):
                     result.append((s_end - offset) - (start - offset))
                 i += 2
             print(result)
-            seeds = result
-            result = []
-    return seeds
+        seeds = result
+        result = []
+    return seeds[:2:]
 
 
 if __name__ == '__main__':
     with open("day5.txt") as f:
         content = f.read()
     # print(part1(content))
-    print(part2(content))
+    print(min(part2(content)))
